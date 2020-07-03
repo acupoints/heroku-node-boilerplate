@@ -1,0 +1,6 @@
+# STEPS
+
+```bash
+npm install
+
+```
