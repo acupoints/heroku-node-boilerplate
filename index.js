@@ -18,7 +18,7 @@ app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended: true}))
 
 app.get('/', (req, res) => {
-    res.send('Hello HEROKU-NODE-BOILERPLATE')
+    res.send('Hello HEROKU-node-boilerplate')
 })
 
 app.use(
