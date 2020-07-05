@@ -24,7 +24,7 @@ app.use(
     )
     
 app.get('/', (req, res) => {
-    res.send('Hello')
+    res.send('Hello2')
 })
 app.get('/articles', (req, res, next) => {
     // res.send(articles)
@@ -42,16 +42,16 @@ app.post('/articles', (req, res, next) => {
     // res.send(article)
     const url = req.body.url
 
-    read(url, (err, result) => {
-        if (err || !result) res.status(500).send('Error downloading article')
-        Article.create(
-            {title: result.title, content: result.content},
-            (err, article) => {
-                if (err) return next(err)
-                res.send('OK')
-            }
-        )
-    })
+    // read(url, (err, result) => {
+    //     if (err || !result) res.status(500).send('Error downloading article')
+    //     Article.create(
+    //         {title: result.title, content: result.content},
+    //         (err, article) => {
+    //             if (err) return next(err)
+    //             res.send('OK')
+    //         }
+    //     )
+    // })
 })
 
 app.get('/articles/:id', (req, res, next) => {
