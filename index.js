@@ -17,15 +17,15 @@ app.set('view engine', 'ejs')
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended: true}))
 
-app.get('/', (req, res) => {
-    res.send('Hello HEROKU-node-boilerplate')
-})
 
 app.use(
     '/css/bootstrap.css',
     express.static('node_modules/bootstrap/dist/css/bootstrap.css')
-)
-
+    )
+    
+app.get('/', (req, res) => {
+    res.send('Hello')
+})
 app.get('/articles', (req, res, next) => {
     // res.send(articles)
     Article.all((err, articles) => {
