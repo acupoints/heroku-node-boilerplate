@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const bodyparser = require('body-parser')
 const Article = require('./db').Article
-const read = require('node-readability')
+// const read = require('node-readability')
 
 // const articles = [{title: 'Example'}]
 
