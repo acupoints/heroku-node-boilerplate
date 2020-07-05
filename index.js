@@ -17,6 +17,10 @@ app.set('view engine', 'ejs')
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended: true}))
 
+app.get('/', (req, res) => {
+    res.send('Hello HEROKU-NODE-BOILERPLATE')
+})
+
 app.use(
     '/css/bootstrap.css',
     express.static('node_modules/bootstrap/dist/css/bootstrap.css')
