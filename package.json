@@ -6,7 +6,10 @@
   "author": "Gullies <1448991007@qq.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "babel": "./node_modules/.bin/babel browser.js -d build/",
+    "uglify": "./node_modules/.bin/uglifyjs build/browser.js -o build/browser.min.js",
+    "build": "npm run babel && npm run uglify"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -14,5 +17,10 @@
     "ejs": "^3.1.3",
     "express": "^4.17.1",
     "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "uglify-es": "^3.3.9"
   }
 }

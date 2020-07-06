@@ -24,7 +24,7 @@ app.use(
     )
     
 app.get('/', (req, res) => {
-    res.send('Hello3')
+    res.send('Hello4')
 })
 app.get('/articles', (req, res, next) => {
     // res.send(articles)
