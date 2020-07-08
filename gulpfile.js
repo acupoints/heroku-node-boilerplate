@@ -8,7 +8,7 @@ gulp.task('default', () => {
     return gulp.src('app/*.jsx')
         .pipe(sourcemaps.init())
         .pipe(babel({
-            presets: ["@babel/react","@babel/env"]
+            "presets": ["@babel/preset-env", "@babel/preset-react"]
         }))
         .pipe(concat('all.js'))
         .pipe(sourcemaps.write('.'))
