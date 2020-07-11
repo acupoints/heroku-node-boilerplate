@@ -11,6 +11,9 @@ const register = require('./routes/register')
 const login = require('./routes/login')
 const messages = require('./middleware/messages')
 const session = require('express-session')
+const api = require('./routes/api')
+const Entry = require('./models/entry')
+const page = require('./middleware/page')
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
@@ -33,6 +36,7 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api', api.auth)
 app.use(user)
 app.use(messages)
 // app.use(app.router)
@@ -52,6 +56,10 @@ app.post('/register', register.submit)
 app.get('/login', login.form)
 app.post('/login', login.submit)
 app.get('/logout', login.logout)
+
+app.get('/api/user/:id', api.user)
+app.post('/api/entry', entries.submit)
+app.get('/api/entries/:page?', page(Entry.count), api.entries)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
