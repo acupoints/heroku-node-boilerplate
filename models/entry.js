@@ -1,5 +1,5 @@
 const redis = require('redis')
-const db = redis.createClient()
+const db = redis.createClient(process.env.REDIS_URL)
 
 class Entry {
     static getRange (from, to, cb) {
