@@ -7,8 +7,15 @@ npm start
 # Procfile
 web: node index.js
 
+
+##
 npm i -S react react-dom
 npm i -D webpack webpack-cli webpack-dev-server
+
+##
+npm i -S connect express
+npm i -g express-generator
+express -e .
 
 ```
 
