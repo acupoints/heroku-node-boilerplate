@@ -4,19 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-const validate = require('./middleware/validate')
-const user = require('./middleware/user')
-const entries = require('./routes/entries')
-const register = require('./routes/register')
-const login = require('./routes/login')
-const messages = require('./middleware/messages')
-const session = require('express-session')
-const api = require('./routes/api')
-const Entry = require('./models/entry')
-const page = require('./middleware/page')
-
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -26,40 +15,12 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({
-  secret: 'secret',
-  resave: false, saveUninitialized: true
-}))
-// app.use(messages)
-
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api', api.auth)
-app.use(user)
-app.use(messages)
-// app.use(app.router)
-
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-app.get('/', entries.list)
-app.get('/post', entries.form)
-// app.post('/post', entries.submit)
-app.post('/post', 
-  validate.required('entry[title]'), 
-  validate.lengthAbove('entry[title]', 4) , entries.submit)
-
-app.get('/register', register.form)
-app.post('/register', register.submit)
-
-app.get('/login', login.form)
-app.post('/login', login.submit)
-app.get('/logout', login.logout)
-
-app.get('/api/user/:id', api.user)
-app.post('/api/entry', entries.submit)
-app.get('/api/entries/:page?', page(Entry.count), api.entries)
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
