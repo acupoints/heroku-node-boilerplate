@@ -17,14 +17,14 @@ app.set('view engine', 'ejs');
 
 app.use(cors())
 app.use(logger('dev'));
-app.use(function(req, res, next) {
-  // req.secure is equivalent to req.protocol === 'https'
-  if (req.secure) {
-    next();
-  } else {
-    res.redirect('https://' + req.headers.host + req.url);
-  }
-})
+// app.use(function(req, res, next) {
+//   // req.secure is equivalent to req.protocol === 'https'
+//   if (req.secure) {
+//     next();
+//   } else {
+//     res.redirect('https://' + req.headers.host + req.url);
+//   }
+// })
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
