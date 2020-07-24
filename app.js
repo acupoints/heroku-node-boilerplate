@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 
 app.use(cors())
 app.use(logger('dev'));
-app.use(sslRedirect)
+app.use(sslRedirect())
 // app.use(function(req, res, next) {
 //   // req.secure is equivalent to req.protocol === 'https'
 //   if (req.secure) {
