@@ -20,9 +20,14 @@ app.use(logger('dev'));
 app.use(function(req, res, next) {
   // req.secure is equivalent to req.protocol === 'https'
   if (req.secure) {
+    // request was via https, so do no special handling
     next();
   } else {
-    res.redirect('https://' + req.headers.host + req.url);
+    // request was via http, so redirect to https
+    // res.redirect('https://' + req.headers.host + req.url);
+    const secureUrl = "https://" + req.headers['host'] + req.url; 
+    res.writeHead(301, { "Location":  secureUrl });
+    res.end();
   }
 })
 app.use(express.json());
