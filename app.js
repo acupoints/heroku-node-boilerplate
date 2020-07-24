@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors')
+const sslRedirect = require('heroku-ssl-redirect')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -17,19 +18,20 @@ app.set('view engine', 'ejs');
 
 app.use(cors())
 app.use(logger('dev'));
-app.use(function(req, res, next) {
-  // req.secure is equivalent to req.protocol === 'https'
-  if (req.secure) {
-    // request was via https, so do no special handling
-    next();
-  } else {
-    // request was via http, so redirect to https
-    // res.redirect('https://' + req.headers.host + req.url);
-    const secureUrl = "https://" + req.headers['host'] + req.url; 
-    res.writeHead(301, { "Location":  secureUrl });
-    res.end();
-  }
-})
+app.use(sslRedirect)
+// app.use(function(req, res, next) {
+//   // req.secure is equivalent to req.protocol === 'https'
+//   if (req.secure) {
+//     // request was via https, so do no special handling
+//     next();
+//   } else {
+//     // request was via http, so redirect to https
+//     // res.redirect('https://' + req.headers.host + req.url);
+//     const secureUrl = "https://" + req.headers['host'] + req.url; 
+//     res.writeHead(301, { "Location":  secureUrl });
+//     res.end();
+//   }
+// })
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
