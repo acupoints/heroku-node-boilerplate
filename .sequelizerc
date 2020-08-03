@@ -1,0 +1,9 @@
+const path = require('path');
+
+process.env.FYREST = './fyrest';
+module.exports = {
+  "config": path.resolve(process.env.FYREST, './config', 'config.json'),
+  "models-path": path.resolve(process.env.FYREST, './models'),
+  "seeders-path": path.resolve(process.env.FYREST, './seeders'),
+  "migrations-path": path.resolve(process.env.FYREST, './migrations'),
+};
