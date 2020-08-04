@@ -1,6 +1,13 @@
-var redis = require('redis');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
+// The URL of the Redis server. 
+// Format: [redis[s]:]//[[user][:password@]][host][:port][/db-number][?db=db-number[&password=bar[&option=value]]]
+// redis.createClient([options])
+// redis.createClient(unix_socket[, options])
+// redis.createClient(redis_url[, options])
+// redis.createClient(port[, host][, options])
+// |Property url |Default null
+var redis = require('redis');
 var redisClient = redis.createClient(process.env.REDIS_URL || null);
 var options = {
     // host: 'localhost',
@@ -20,4 +27,4 @@ function getAllActiveSessions() {
     });
 }
 
-module.exports = { redisStore, getAllActiveSessions };
+module.exports = { redisStore, getAllActiveSessions, redisClient };
