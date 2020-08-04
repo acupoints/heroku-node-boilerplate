@@ -1,7 +1,7 @@
 var redis = require('redis');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
-var redisClient = redis.createClient();
+var redisClient = redis.createClient(process.env.REDIS_URL || null);
 var options = {
     // host: 'localhost',
     // port: 6379,
